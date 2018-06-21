@@ -1,0 +1,3 @@
+[submodule "py-cal"]
+	path = py-cal
+	url = https://github.com/AIDEA775/py-cal
