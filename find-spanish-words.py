@@ -1,15 +1,15 @@
 #!/usr/bin/python
-"""Find Words.
+"""Find the possible words with the specific letters and length.
 
 Usage:
-  findSpanishWords.py <dic> <letters> <len>
-  findSpanishWords.py (-h | --help)
+  %name% <dictionary> <letters> <length>
+  %name% (-h | --help)
 
 Options:
   -h --help     Show this screen.
 
 """
-
+import sys
 from docopt import docopt
 
 def checkWord(realWord, letters):
@@ -27,12 +27,13 @@ def find(dic, letters, size):
             print(w)
 
 if __name__ == '__main__':
-    args = docopt(__doc__, version='0')
+    progName=sys.argv[0]
+    args = docopt(__doc__.replace('%name%',progName), help=True)
 
-    with open(args['<dic>']) as f:
+    with open(args['<dictionary>']) as f:
         dic = f.readlines()
 
     dic = [x.strip() for x in dic]
     
-    find(dic, args['<letters>'], int(args['<len>']))
+    find(dic, args['<letters>'], int(args['<length>']))
 
