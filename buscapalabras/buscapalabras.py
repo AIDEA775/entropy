@@ -2,14 +2,15 @@
 """Find the possible words with the specific letters and length.
 
 Usage:
-  %name% <dictionary> <letters> <length>
+  %name% [-d FILE] <letters> <length>
   %name% (-h | --help)
 
 Options:
-  -h --help     Show this screen.
+  -d FILE --dictionary=FILE  Dictionary to use [default: %path%/default.txt]
+  -h --help                  Show this screen.
 
 """
-import sys
+import sys, os
 from docopt import docopt
 
 def checkWord(realWord, letters):
@@ -27,10 +28,11 @@ def find(dic, letters, size):
             print(w)
 
 if __name__ == '__main__':
-    progName=sys.argv[0]
-    args = docopt(__doc__.replace('%name%',progName))
+    name = os.path.basename(sys.argv[0])
+    path = os.path.dirname(os.path.abspath(__file__))
+    args = docopt(__doc__.replace('%name%', name).replace('%path%', path))
 
-    with open(args['<dictionary>']) as f:
+    with open(args['--dictionary']) as f:
         dic = f.readlines()
 
     dic = [x.strip() for x in dic]
