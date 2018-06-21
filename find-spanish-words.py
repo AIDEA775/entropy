@@ -28,7 +28,7 @@ def find(dic, letters, size):
 
 if __name__ == '__main__':
     progName=sys.argv[0]
-    args = docopt(__doc__.replace('%name%',progName), help=True)
+    args = docopt(__doc__.replace('%name%',progName))
 
     with open(args['<dictionary>']) as f:
         dic = f.readlines()
